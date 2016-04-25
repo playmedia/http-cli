@@ -7,6 +7,7 @@ It uses the following modules and middlewares :
 * [command-line-args](https://www.npmjs.com/package/command-line-args)
 * [connect](https://www.npmjs.com/package/connect)
 * [cors](https://www.npmjs.com/package/cors)
+* [morgan](https://www.npmjs.com/package/morgan)
 * [serve-index](https://www.npmjs.com/package/serve-index)
 * [serve-static](https://www.npmjs.com/package/serve-static)
 
@@ -35,6 +36,7 @@ Options
 Default behaviour is :
 
 * accept connections on `127.0.0.1` and port 8000
+* use [combined](https://www.npmjs.com/package/morgan#combined) log output
 * use current directory as web root
 * directory listing is enabled
 * send "index.html" files in response to a request on a directory
@@ -74,9 +76,12 @@ Default configuration is equivalent to :
   "port": 8000,
   "host": "127.0.0.1",
   "root": "./",
+  "logFormat": "combined",
   "middlewares": {
     "cors": {
       "origin": true
+    },
+    "morgan": {
     },
     "serveIndex": {
       "icons": true
