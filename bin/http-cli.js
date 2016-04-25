@@ -26,9 +26,12 @@ var config = {
   port: options.port,
   host: options.host,
   root: options.root,
+  logFormat: 'combined',
   middlewares: {
     cors: {
       origin: true,
+    },
+    morgan: {
     },
     serveIndex: {
       icons: true,
