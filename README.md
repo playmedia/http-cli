@@ -1,5 +1,7 @@
 # http-cli
 
+[![Dependency Status](https://david-dm.org/playmedia/http-cli.svg)](https://david-dm.org/playmedia/http-cli)
+
 Simple Node.js command-line HTTP server with CORS support.
 
 It uses the following modules and middlewares :
