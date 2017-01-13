@@ -1,7 +1,7 @@
 {
   "author": "playmedia",
   "name": "http-cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Simple Node.js command-line HTTP server with CORS support.",
   "license": "MIT",
   "repository": {
@@ -34,5 +34,5 @@
   "bin": {
     "http-cli": "./bin/http-cli.js"
   },
-  "main": "./bin/main.js"
+  "main": "./lib/main.js"
 }
