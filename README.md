@@ -95,6 +95,21 @@ Default configuration is equivalent to :
 }
 ```
 
+## Node.js module
+
+```javascript
+const http = require('http-cli')
+
+const config = http.Config.default()
+// const config = http.Config.loadFromFile('path/to/config.json')
+
+http.server(config)
+  // .use(/* another middleware */)
+  .listen(config.port, config.host, function() {
+    console.log('http server listening on ' + config.host + ':' + config.port)
+  })
+```
+
 ## License
 
 [MIT](LICENSE)
