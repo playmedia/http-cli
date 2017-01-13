@@ -7,6 +7,7 @@ Simple Node.js command-line HTTP server with CORS support.
 It uses the following modules and middlewares :
 
 * [command-line-args](https://www.npmjs.com/package/command-line-args)
+* [command-line-usage](https://github.com/75lb/command-line-usage)
 * [connect](https://www.npmjs.com/package/connect)
 * [cors](https://www.npmjs.com/package/cors)
 * [morgan](https://www.npmjs.com/package/morgan)
@@ -93,6 +94,21 @@ Default configuration is equivalent to :
     }
   }
 }
+```
+
+## Node.js module
+
+```javascript
+const http = require('http-cli')
+
+const config = http.Config.default()
+// const config = http.Config.loadFromFile('path/to/config.json')
+
+http.server(config)
+  // .use(/* another middleware */)
+  .listen(config.port, config.host, function() {
+    console.log('http server listening on ' + config.host + ':' + config.port)
+  })
 ```
 
 ## License
