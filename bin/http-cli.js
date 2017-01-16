@@ -4,13 +4,13 @@ var commandLineArgs = require('command-line-args')
 var commandLineUsage = require('command-line-usage')
 var http = require('../lib/main')
 
-const defaultConfig = http.Config.default()
+const config = new http.Config()
 
 const optionList = [
   { name: 'help', alias: 'h', type: Boolean, description: 'Display this usage help.' },
-  { name: 'port', alias: 'p', type: Number, description: 'Listen port number.', defaultValue: defaultConfig.port },
-  { name: 'host', alias: 'a', type: String, description: 'Listen ip address or hostname.', defaultValue: defaultConfig.host },
-  { name: 'root', alias: 'r', type: String, description: 'Root folder path.', defaultValue: defaultConfig.root },
+  { name: 'port', alias: 'p', type: Number, description: 'Listen port number.', defaultValue: config.port() },
+  { name: 'host', alias: 'a', type: String, description: 'Listen ip address or hostname.', defaultValue: config.host() },
+  { name: 'root', alias: 'r', type: String, description: 'Root folder path.', defaultValue: config.root() },
   { name: 'config', alias: 'c', type: String, description: 'JSON configuration load file path.' },
   { name: 'dump', alias: 'd', type: String, description: 'Default JSON configuration save file path.' },
 ]
@@ -32,13 +32,13 @@ if (options.help) {
 }
 
 if (options.dump) {
-  http.Config.dump(options.dump)
+  config.saveToFile(options.dump)
   process.exit()
 }
 
-const config = http.Config.load(options)
+config.loadFromOptions(options)
 
 http.server(config)
-  .listen(config.port, config.host, function() {
-    console.log('http server listening on ' + config.host + ':' + config.port)
+  .listen(config.port(), config.host(), function() {
+    console.log('http server listening on ' + config.host() + ':' + config.port())
   })
