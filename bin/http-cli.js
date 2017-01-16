@@ -11,7 +11,8 @@ const optionList = [
   { name: 'port', alias: 'p', type: Number, description: 'Listen port number.', defaultValue: defaultConfig.port },
   { name: 'host', alias: 'a', type: String, description: 'Listen ip address or hostname.', defaultValue: defaultConfig.host },
   { name: 'root', alias: 'r', type: String, description: 'Root folder path.', defaultValue: defaultConfig.root },
-  { name: 'config', alias: 'c', type: String, description: 'JSON configuration file path.' },
+  { name: 'config', alias: 'c', type: String, description: 'JSON configuration load file path.' },
+  { name: 'dump', alias: 'd', type: String, description: 'Default JSON configuration save file path.' },
 ]
 
 const options = commandLineArgs(optionList)
@@ -27,6 +28,11 @@ if (options.help) {
       optionList: optionList,
     }
   ]))
+  process.exit()
+}
+
+if (options.dump) {
+  http.Config.dump(options.dump)
   process.exit()
 }
 

@@ -29,11 +29,12 @@ Command line options are :
 ```
 Options
 
-  -h, --help      Display this usage help.
-  -p, --port      Listen port number.
-  -a, --host      Listen ip address or hostname.
-  -r, --root      Root folder path.
-  -c, --config    JSON configuration file path.
+  -h, --help            Display this usage help.
+  -p, --port number     Listen port number.
+  -a, --host string     Listen ip address or hostname.
+  -r, --root string     Root folder path.
+  -c, --config string   JSON configuration load file path.
+  -d, --dump string     Default JSON configuration save file path.
 ```
 
 Default behaviour is :
@@ -84,17 +85,16 @@ Default configuration is equivalent to :
     "cors": {
       "origin": true
     },
-    "morgan": {
-    },
+    "morgan": {},
     "serveIndex": {
       "icons": true
     },
-    "serveStatic": {
-      "index": ["index.html"]
-    }
+    "serveStatic": {}
   }
 }
 ```
+
+The default configuration can be saved to file with `--dump` option.
 
 ## Node.js module
 
