@@ -57,17 +57,26 @@ Example configuration file :
   "port": 3000,
   "host": "0.0.0.0",
   "root": "./web/",
-  "middlewares": {
-    "cors": {
-      "origin": "http://example.com"
+  "middlewares": [
+    {
+      "name": "cors",
+      "cfg": {
+        "origin": "http://example.com"
+      }
     },
-    "serveIndex": {
-      "view": "details"
+    {
+      "name": "serveStatic",
+      "cfg": {
+        "index": ["index.html", "default.html"]
+      }
     },
-    "serveStatic": {
-      "index": ["index.html", "default.html"]
+    {
+      "name": "serveIndex",
+      "cfg": {
+        "view": "details"
+      }
     }
-  }
+  ]
 }
 ```
 
@@ -81,16 +90,28 @@ Default configuration is equivalent to :
   "host": "127.0.0.1",
   "root": "./",
   "logFormat": "combined",
-  "middlewares": {
-    "cors": {
-      "origin": true
+  "middlewares": [
+    {
+      "name": "cors",
+      "cfg": {
+        "origin": true
+      }
     },
-    "morgan": {},
-    "serveIndex": {
-      "icons": true
+    {
+      "name": "morgan",
+      "cfg": {}
     },
-    "serveStatic": {}
-  }
+    {
+      "name": "serveStatic",
+      "cfg": {}
+    },
+    {
+      "name": "serveIndex",
+      "cfg": {
+        "icons": true
+      }
+    }
+  ]
 }
 ```
 
@@ -101,13 +122,43 @@ The default configuration can be saved to file with `--dump` option.
 ```javascript
 const http = require('http-cli')
 
-const config = http.Config.default()
-// const config = http.Config.loadFromFile('path/to/config.json')
+const config = new http.Config()
+// config.loadFromFile('path/to/config.json')
+// config.port(8090)
 
 http.server(config)
-  // .use(/* another middleware */)
-  .listen(config.port, config.host, function() {
-    console.log('http server listening on ' + config.host + ':' + config.port)
+  .listen(config.port(), config.host(), function() {
+    console.log('http server listening on ' + config.host() + ':' + config.port())
+  })
+```
+
+Middlewares are "used" in the same order as the configuration array.
+
+Some configuration helpers are available to facilitate the addition of middleware.
+
+```javascript
+const http = require('http-cli')
+
+const config = new http.Config()
+
+config.use(function(req, res, next) {
+  // this middleware is used at the end
+  next()
+})
+
+config.useBefore('serveIndex', function(req, res, next) {
+  // this middleware is used before serveIndex middleware
+  next()
+})
+
+config.useAfter('cors', function(req, res, next) {
+  // this middleware is used after cors middleware
+  next()
+})
+
+http.server(config)
+  .listen(config.port(), config.host(), function() {
+    console.log('http server listening on ' + config.host() + ':' + config.port())
   })
 ```
 
