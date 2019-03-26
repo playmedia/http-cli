@@ -1,13 +1,11 @@
 # http-cli
 
-[![Dependency Status](https://david-dm.org/playmedia/http-cli.svg)](https://david-dm.org/playmedia/http-cli)
-
 Simple Node.js command-line HTTP server with CORS support.
 
 It uses the following modules and middlewares :
 
 * [command-line-args](https://www.npmjs.com/package/command-line-args)
-* [command-line-usage](https://github.com/75lb/command-line-usage)
+* [command-line-usage](https://www.npmjs.com/package/command-line-usage)
 * [connect](https://www.npmjs.com/package/connect)
 * [cors](https://www.npmjs.com/package/cors)
 * [morgan](https://www.npmjs.com/package/morgan)
