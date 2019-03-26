@@ -17,19 +17,13 @@
     "server"
   ],
   "dependencies": {
-    "command-line-args": "3.0.5",
-    "command-line-usage": "3.0.8",
-    "connect": "3.5.0",
-    "cors": "2.8.1",
-    "morgan": "1.7.0",
-    "serve-index": "1.8.0",
-    "serve-static": "1.11.1"
-  },
-  "devDependencies": {
-    "david": "9.0.0"
-  },
-  "scripts": {
-    "check": "david"
+    "command-line-args": "5.1.0",
+    "command-line-usage": "5.0.5",
+    "connect": "3.6.6",
+    "cors": "2.8.5",
+    "morgan": "1.9.1",
+    "serve-index": "1.9.1",
+    "serve-static": "1.13.2"
   },
   "bin": {
     "http-cli": "./bin/http-cli.js"
